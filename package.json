@@ -1,7 +1,7 @@
 {
-  "name": "moajs",
-  "version": "1.0.27",
-  "description": "Moajs is a full stack framework based expressjs、mongoose、bluebird、mocha.",
+  "name": "moag",
+  "version": "1.0.0",
+  "description": "moag is a scaffold generator",
   "main": "index.js",
   "scripts": {
     "start": "npm publish .",
@@ -11,18 +11,18 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "koa": "bin/moag.js"
+    "moag": "bin/moag.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moajs/moa.git"
+    "url": "git+https://github.com/i5ting/moag.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/moajs/moa/issues"
+    "url": "https://github.com/i5ting/moag/issues"
   },
-  "homepage": "https://github.com/moajs/moa#readme",
+  "homepage": "https://github.com/i5ting/moag#readme",
   "dependencies": {
     "bluebird": "^2.9.27",
     "commander": "^2.8.1",

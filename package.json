@@ -1,0 +1,38 @@
+{
+  "name": "moajs",
+  "version": "1.0.27",
+  "description": "Moajs is a full stack framework based expressjs、mongoose、bluebird、mocha.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm publish .",
+    "test": "node test.js",
+    "moag": "node bin/moag.js user name:string password:string uid:object",
+    "moa": "node bin/moag.js -h user name:string password:string uid:object"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "koa": "bin/moag.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moajs/moa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moajs/moa/issues"
+  },
+  "homepage": "https://github.com/moajs/moa#readme",
+  "dependencies": {
+    "bluebird": "^2.9.27",
+    "commander": "^2.8.1",
+    "debug": "~2.2.0",
+    "dirw": "^1.0.2",
+    "inflected": "^1.1.6",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.10.3",
+    "shelljs": "^0.5.0",
+    "tpl_apply": "^1.0.3"
+  },
+  "devDependencies": {}
+}

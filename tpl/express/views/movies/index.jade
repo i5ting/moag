@@ -1,0 +1,27 @@
+extends ../layouts/layout
+
+block content
+  h1 Listing {{models}}
+
+  table
+    thead
+      tr
+        each n in [{{{keys}}}]
+          th #{n}
+        th(colspan="3")
+    tbody
+      each {{model}} in {{models}}
+        tr
+          each n in [{{{model_dot_attrs}}}]
+            td #{ eval(n) }
+          td 
+            a(href='/{{models}}/#{ {{model}}._id}') Show
+          td 
+            a(href='/{{models}}/#{ {{model}}._id}/edit') Edit
+          td 
+            a(onclick="click_del('/{{models}}/#{ {{model}}._id}/')") Delete
+
+  br
+
+  p 
+    a(href='/{{models}}/new') New {{entity}}

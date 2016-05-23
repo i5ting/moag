@@ -1,21 +1,9 @@
-# Moajs
+# Moag
 
-Moajs is a open-source web framework based expressjs、mongoose、bluebird、mocha that’s optimized
-for programmer happiness and sustainable productivity. It lets you
-write beautiful code by favoring convention over configuration.
+Moag is a scaffold generator
 
 [![gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
-
-* Modular && Plugable
-* Scaffold
-* Model-View-Controller (MVC) pattern
-* Restful Api
-* Auto mount routes
-* Mongoosedao for data access
-* Gulp as task management
-* Live reload
-* Runtime Server 
 
 
 ![](doc/moa.jpg)

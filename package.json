@@ -11,6 +11,7 @@
   },
   "preferGlobal": "true",
   "bin": {
+    "moad": "bin/moad.js",
     "moag": "bin/moag.js"
   },
   "repository": {

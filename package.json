@@ -33,7 +33,7 @@
     "mkdirp": "^0.5.1",
     "moment": "^2.10.3",
     "shelljs": "^0.5.0",
-    "tpl_apply": "^1.0.3"
+    "tpl_apply": "^1.0.5"
   },
   "devDependencies": {}
 }

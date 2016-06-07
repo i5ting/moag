@@ -15,7 +15,7 @@ var opts = {
 }
 
 if (program.koa) {
-  opts.framework = 'koa';
+  opts.framework = 'koa2-common';
 }
 
 if (program.express) {

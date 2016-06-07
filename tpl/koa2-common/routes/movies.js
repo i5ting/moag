@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+var router = require('koa-router')();
+const co = require('co');
 
 // mount all middlewares in app/middlewares, examples:
 // 
@@ -11,7 +11,6 @@ var $middlewares  = require('mount-middlewares')(__dirname);
 
 // core controller
 var $ = require('mount-controllers')(__dirname).{{models}}_controller;
-
 
 /**
  * Auto generate RESTful url routes.

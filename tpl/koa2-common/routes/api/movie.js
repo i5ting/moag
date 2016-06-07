@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+var router = require('koa-router')();
+const co = require('co');
 
 // var res_api       = require('res.api');
 var $ = require('mount-controllers')(__dirname).{{models}}_controller;

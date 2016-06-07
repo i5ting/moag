@@ -28,17 +28,19 @@ var $ = require('mount-controllers')(__dirname).{{models}}_controller;
  *
  */
 
-router.get('/new', $.new);  
+router.get('/new', $.new); 
+ 
 router.get('/:id/edit', $.edit);
 
-router.route('/')
-  .get($.list)
-  .post($.create);
+router.get('/', $.list);
 
-router.route('/:id')
-  .patch($.update)
-  .get($.show)
-  .delete($.destroy);
+router.post('/', $.create);
+
+router.get('/:id', $.show);
+
+router.patch('/:id', $.update);
+
+router.delete('/:id', $.destroy);
 
 
 // -- custom routes

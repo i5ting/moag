@@ -1,0 +1,11 @@
+extends ../layouts/layout
+
+block content
+  h1 Editing {{model}}
+
+  include {{model}}
+
+  a(href='/{{models}}/#{ {{model}}._id}') Show
+  span |
+  a(href='/{{models}}') Back
+

@@ -17,9 +17,6 @@ var opts = {
   framework: 'express'
 }
 
-
-
-// 
 if (program.koa || program.async || program.common || program.generator) {
   var t = 'common';
   

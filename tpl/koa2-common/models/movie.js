@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by alfred on {{created_at}}.
  */

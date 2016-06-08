@@ -1,0 +1,13 @@
+extends ../layouts/layout
+
+block content
+  p#notice
+
+  each n in [{{{model_dot_attrs}}}]
+    p
+      strong #{n.split('.')[1]}:
+      span #{eval(n)}
+
+  a(href='/{{models}}/#{ {{model}}._id}/edit') Edit
+  span |
+  a(href='/{{models}}') Back

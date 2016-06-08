@@ -47,7 +47,7 @@ exports.edit = function *(ctx, next) {
 
   let id = ctx.params.id;
 
-  let {{model}} = yield {{entity}}.getById(id);
+  let {{model}} = yield {{entity}}.getByIdAsync(id);
   
   console.log({{model}});
   {{model}}._action = 'edit';

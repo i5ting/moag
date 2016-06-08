@@ -10,11 +10,9 @@ Moag is a scaffold generator
 
 > "Lost, like the Moa is lost" - Maori proverb
 
-## Requirement 
+## Features
 
-- nodejs v0.10 + 
-- nvm    v0.25 +
-- gulp   v3.90 +
+- support express && koa
 
 ## Install
 
@@ -22,9 +20,27 @@ Moag is a scaffold generator
     
 ## Usage
 
-### help
+### for koa 2 common function
 
-    ➜  moag git:(master) moa
+```
+moag student2 name:string password:string -k
+```
+
+### for koa2 async/await
+
+```
+moag cup name:string password:string -k -a
+```
+
+### for koa2 generator
+
+```
+moag book name:string password:string -k -g
+```
+
+### default for expresss
+
+    ➜  moag git:(master) moag
     Moajs HELP:
 
     moag: 【创建脚手架】 moag user name:string password:string uid:object

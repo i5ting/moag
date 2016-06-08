@@ -75,7 +75,7 @@ exports.update = function *(ctx, next) {
 
   let id = ctx.params.id;
 
-  let {{model}} = yield {{entity}}.updateById(id,{{keypair}});
+  let {{model}} = yield {{entity}}.updateByIdAsync(id,{{keypair}});
   
   yield ctx.body = ({
     data:{

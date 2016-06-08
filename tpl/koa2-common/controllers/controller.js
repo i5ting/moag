@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * Created by Moajs on {{created_at}}.
  */

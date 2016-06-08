@@ -11,11 +11,13 @@ var {{entity}} = $models.{{model}};
 exports.list = (ctx, next) => {
   console.log(ctx.method + ' /{{models}} => list, query: ' + JSON.stringify(ctx.query));
 
-  return {{entity}}.getAllAsync().then(({{models}})=>{
+  return {{entity}}.getAllAsync().then(( {{models}})=>{
     return ctx.render('{{models}}/index', {
       {{models}} : {{models}}
     })
-  })
+  }).catch((err)=>{
+      return ctx.api_error(err);
+  });
 };
 
 exports.new = (ctx, next) => {
@@ -33,11 +35,13 @@ exports.show = (ctx, next) => {
     ', params: ' + JSON.stringify(ctx.params));
   var id = ctx.params.id;
 
-  return {{entity}}.getByIdAsync(id).then(function({{model}}){
+  return {{entity}}.getByIdAsync(id).then( {{model}} => {
     console.log({{model}});
     return ctx.render('{{models}}/show', {
       {{model}} : {{model}}
     })
+  }).catch((err)=>{
+      return ctx.api_error(err);
   });
 };
 
@@ -47,13 +51,15 @@ exports.edit = (ctx, next) => {
 
   var id = ctx.params.id;
 
-  return {{entity}}.getById(id, function(err, {{model}}){
+  return {{entity}}.getByIdAsync(id).then( {{model}} => {
     console.log({{model}});
     {{model}}._action = 'edit';
 
     return ctx.render('{{models}}/edit', {
       {{model}} : {{model}}
     })
+  }).catch((err)=>{
+      return ctx.api_error(err);
   });
 };
 
@@ -61,12 +67,14 @@ exports.create = (ctx, next) => {
   console.log(ctx.method + ' /{{models}} => create, query: ' + JSON.stringify(ctx.query) +
     ', params: ' + JSON.stringify(ctx.params) + ', body: ' + JSON.stringify(ctx.request.body));
 
-    return {{entity}}.createAsync({{keypair}}).then( {{model}} => {
-      console.log({{model}});
-      return ctx.render('{{models}}/show', {
-        {{model}} : {{model}}
-      })
+  return {{entity}}.createAsync({{keypair}}).then( {{model}} => {
+    console.log({{model}});
+    return ctx.render('{{models}}/show', {
+      {{model}} : {{model}}
     })
+  }).catch((err)=>{
+      return ctx.api_error(err);
+  });
 };
 
 exports.update = (ctx, next) => {

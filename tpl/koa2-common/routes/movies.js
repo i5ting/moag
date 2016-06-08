@@ -37,7 +37,6 @@ router.patch('/:id', $.update);
 
 router.delete('/:id', $.destroy);
 
-
 // -- custom routes
 
 

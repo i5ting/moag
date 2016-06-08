@@ -7,6 +7,9 @@ var program = require('commander');
 program
   .version('0.0.1')
   .option('-k, --koa', 'generat code with koa')
+  .option('-a, --async', 'generat code with koa')
+  .option('-c, --common', 'generat code with koa')
+  .option('-g, --generator', 'generat code with koa')
   .option('-e, --express', 'generat code with express')
   .parse(process.argv);
 
@@ -14,8 +17,27 @@ var opts = {
   framework: 'express'
 }
 
-if (program.koa) {
-  opts.framework = 'koa2-common';
+
+
+// 
+if (program.koa || program.async || program.common || program.generator) {
+  var t = 'common';
+  
+  if (program.async) {
+    t = 'async'
+  }
+  
+  if (program.common) {
+
+  }
+  
+  if (program.generator) {
+    t = 'generator'
+  }
+  
+  opts.framework = 'koa2-' + t;
+  
+  console.log(opts.framework )
 }
 
 if (program.express) {

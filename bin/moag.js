@@ -48,7 +48,7 @@ argv.shift();
 var current_path = process.cwd();
 
 var model = {
-  base_path : current_path + '/app',
+  base_path : current_path,
   entity:'entity',
   attr:{}
 }

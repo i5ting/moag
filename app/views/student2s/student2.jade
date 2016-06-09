@@ -1,0 +1,14 @@
+- var _action = student2._action == 'edit' ? '#' : '/student2s/'
+- var _method = student2._action == 'edit' ? ""  : "post"
+- var _type   = student2._action == 'edit' ? "button"  : "submit"
+- var onClick  = student2._action == 'edit' ?  "click_edit('student2-" + student2._action + "-form','/student2s/" + student2._id + "/')" : ""
+form(id='student2-#{ student2._action}-form',action="#{_action}", method="#{_method}",role='form')
+  each n in ['student2.name','student2.password']
+    - m = eval(n);
+    div(class="field")
+      label #{n.split('.')[1]} #{m}
+      br
+      input(type='text',name="#{n.split('.')[1]}" ,value="#{ m == undefined ? '' : m }")
+        
+  div(class="actions") 
+    input(type='#{_type}',value='Submit',onClick='#{onClick}')

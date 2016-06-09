@@ -6,8 +6,10 @@
   "scripts": {
     "start": "npm publish .",
     "test": "node test.js",
-    "moag": "node bin/moag.js user name:string password:string uid:object",
-    "moa": "node bin/moag.js -h user name:string password:string uid:object"
+    "express": "node bin/moag.js user name:string password:string uid:object",
+    "a": "node bin/moag.js cup name:string password:string -k -a",
+    "c": "node bin/moag.js student2 name:string password:string -k",
+    "g": "node bin/moag.js book name:string password:string -k -g"
   },
   "preferGlobal": "true",
   "bin": {

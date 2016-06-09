@@ -1,0 +1,27 @@
+extends ../layouts/layout
+
+block content
+  h1 Listing student2s
+
+  table
+    thead
+      tr
+        each n in ['name','password']
+          th #{n}
+        th(colspan="3")
+    tbody
+      each student2 in student2s
+        tr
+          each n in ['student2.name','student2.password']
+            td #{ eval(n) }
+          td 
+            a(href='/student2s/#{ student2._id}') Show
+          td 
+            a(href='/student2s/#{ student2._id}/edit') Edit
+          td 
+            a(onclick="click_del('/student2s/#{ student2._id}/')") Delete
+
+  br
+
+  p 
+    a(href='/student2s/new') New Student2

@@ -22,10 +22,11 @@ mkdirp(cache_path, function (err) {
 
 var _default_options = function (base_path){
   return {
-    controller_path : base_path + '/controllers',
-    model_path      : base_path + '/models',
-    view_path       : base_path + '/views',
-    route_path      : base_path + '/routes'  
+    controller_path : base_path + '/app/controllers',
+    model_path      : base_path + '/app/models',
+    view_path       : base_path + '/app/views',
+    route_path      : base_path + '/app/routes',
+    test_path       : base_path + '/test' 
   }
 }
 
@@ -88,6 +89,10 @@ g.prototype.generate_controller = function () {
   require('./lib/controller')(this)
 }
 
+g.prototype.generate_test = function () {
+  require('./lib/test')(this)
+}
+
 g.prototype.generate_model = function () {
   require('./lib/model')(this)
 }
@@ -106,6 +111,7 @@ g.prototype.generate_route_api = function () {
 
 g.prototype.start = g.prototype.all = function () {
   this.generate_controller();
+  this.generate_test();
   this.generate_model();
   this.generate_view();
   this.generate_route();
@@ -117,17 +123,18 @@ g.prototype.destroy = function () {
   var cache_path = getUserHome() +'/.express-g/' + Date.now();
   
   mkdirp(cache_path, function (err) {
-      if (err) console.error(err)
-      else debug('pow! create controller_path')
+    if (err) console.error(err)
+    else debug('pow! create controller_path')
   });
   
   var c = this.controller_path  +'/'+ Inflector.pluralize(entity) + "_controller.js";
+  var t = this.controller_path  +'/'+ Inflector.pluralize(entity) + "_controller.js";
   var m = this.model_path  +'/'+ entity + ".js";
   var v = this.view_path  +'/'+ Inflector.pluralize(entity) + "/";
   var r = this.route_path  +'/'+ Inflector.pluralize(entity) + ".js";
   var a = this.route_path  +'/api/'+ Inflector.pluralize(entity) + ".js";
   
-  [c, m, v, r, a].forEach(function(file){
+  [c, t, m, v, r, a].forEach(function(file){
     mv('-f', file, cache_path + '/');
   });
 }

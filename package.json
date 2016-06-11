@@ -37,5 +37,37 @@
     "shelljs": "^0.5.0",
     "tpl_apply": "^1.0.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "co-exec": "^1.1.0",
+    "co": "^4.6.0",
+    "ioredis": "^1.9.1",
+    "is": "^3.1.0",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^5.0.4",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.1.0",
+    "koa-json": "^2.0.2",
+    "koa-log4": "^2.0.1",
+    "koa-logger": "^2.0.0",
+    "koa-router": "^7.0.0",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.0.1",
+    "koa.res.api": "^2.0.0",
+    "kp": "^1.1.0",
+    "log1": "^1.0.7",
+    "mongoose": "4.0.5",
+    "mongoosedao": "^2.0.2",
+    "morgan": "~1.6.1",
+    "mount-controllers": "^1.0.7",
+    "mount-koa-routes": "^2.0.1",
+    "mount-middlewares": "^1.0.5",
+    "mount-models": "^1.0.8",
+    "mount-services": "^1.0.7",
+    "msgpack5": "^3.1.0",
+    "runkoa": "^1.5.2",
+    "gulp": "^3.9.0",
+    "superkoa": "^1.0.0",
+    "supervisor": "^0.7.1"
+  }
 }

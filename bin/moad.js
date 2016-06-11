@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var child_process = require('child_process');
+var path = require('path');
 
 var argv = process.argv;
 argv.shift();
@@ -9,7 +10,7 @@ argv.shift();
 var current_path = process.cwd();
 
 var model = {
-  base_path : current_path + '/app',
+  base_path : path.join(current_path , '.'),
   entity:'entity',
   attr:{}
 }

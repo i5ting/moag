@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm publish .",
-    "test" : "ava -v test/*.js ",
+    "test": "ava -v test/*.js ",
     "express": "node bin/moag.js user name:string password:string uid:object",
     "a": "node bin/moag.js cup name:string password:string -k -a",
     "c": "node bin/moag.js student2 name:string password:string -k",
@@ -39,8 +39,10 @@
   },
   "devDependencies": {
     "ava": "^0.15.2",
-    "co-exec": "^1.1.0",
     "co": "^4.6.0",
+    "co-exec": "^1.1.0",
+    "execa": "^0.4.0",
+    "gulp": "^3.9.0",
     "ioredis": "^1.9.1",
     "is": "^3.1.0",
     "jade": "^1.11.0",
@@ -66,7 +68,6 @@
     "mount-services": "^1.0.7",
     "msgpack5": "^3.1.0",
     "runkoa": "^1.5.2",
-    "gulp": "^3.9.0",
     "superkoa": "^1.0.0",
     "supervisor": "^0.7.1"
   }

@@ -1,106 +1,118 @@
 "use strict";
 
 /**
- * Created by Moajs on June 12th 2016, 4:01:58 am.
+ * Created by Moajs on June 12th 2016, 4:05:06 am.
  */
  
 var $models = require('mount-models')(__dirname);
 
 var User = $models.user;
 
-exports.list = function *(ctx, next) {
+
+exports.list = (ctx, next) => {
   console.log(ctx.method + ' /users => list, query: ' + JSON.stringify(ctx.query));
-  
-  let users = yield User.getAllAsync();
-  
-  yield ctx.render('users/index', {
-    users : users
-  })
+
+  return User.getAllAsync().then(( users)=>{
+    return ctx.render('users/index', {
+      users : users
+    })
+  }).catch((err)=>{
+      return ctx.api_error(err);
+  });
 };
 
-exports.new = function *(ctx, next) {
+exports.new = (ctx, next) => {
   console.log(ctx.method + ' /users/new => new, query: ' + JSON.stringify(ctx.query));
 
-  yield ctx.render('users/new', {
+  return ctx.render('users/new', {
     user : {
       "_action" : "new"
     }
-  });
+  })
 };
 
-exports.show = function *(ctx, next) {
+exports.show = (ctx, next) => {
   console.log(ctx.method + ' /users/:id => show, query: ' + JSON.stringify(ctx.query) +
     ', params: ' + JSON.stringify(ctx.params));
-  let id = ctx.params.id;
-  let user = yield User.getByIdAsync(id);
-  
-  console.log(user);
-  
-  yield ctx.render('users/show', {
-    user : user
+  var id = ctx.params.id;
+
+  return User.getByIdAsync(id).then( user => {
+    console.log(user);
+    return ctx.render('users/show', {
+      user : user
+    })
+  }).catch((err)=>{
+      return ctx.api_error(err);
   });
 };
 
-exports.edit = function *(ctx, next) {
+exports.edit = (ctx, next) => {
   console.log(ctx.method + ' /users/:id/edit => edit, query: ' + JSON.stringify(ctx.query) +
     ', params: ' + JSON.stringify(ctx.params));
 
-  let id = ctx.params.id;
+  var id = ctx.params.id;
 
-  let user = yield User.getByIdAsync(id);
-  
-  console.log(user);
-  user._action = 'edit';
+  return User.getByIdAsync(id).then( user => {
+    console.log(user);
+    user._action = 'edit';
 
-  yield ctx.render('users/edit', {
-    user : user
+    return ctx.render('users/edit', {
+      user : user
+    })
+  }).catch((err)=>{
+      return ctx.api_error(err);
   });
 };
 
-exports.create = function *(ctx, next) {
+exports.create = (ctx, next) => {
   console.log(ctx.method + ' /users => create, query: ' + JSON.stringify(ctx.query) +
     ', params: ' + JSON.stringify(ctx.params) + ', body: ' + JSON.stringify(ctx.request.body));
 
-  let user = yield User.createAsync({username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address});
-  
-  console.log(user);
-  yield ctx.render('users/show', {
-    user : user
+  return User.createAsync({username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address}).then( user => {
+    console.log(user);
+    return ctx.render('users/show', {
+      user : user
+    })
+  }).catch((err)=>{
+      return ctx.api_error(err);
   });
 };
 
-exports.update = function *(ctx, next) {
+exports.update = (ctx, next) => {
   console.log(ctx.method + ' /users/:id => update, query: ' + JSON.stringify(ctx.query) +
     ', params: ' + JSON.stringify(ctx.params) + ', body: ' + JSON.stringify(ctx.request.body));
 
-  let id = ctx.params.id;
+    var id = ctx.params.id;
 
-  let user = yield User.updateByIdAsync(id,{username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address});
-  
-  yield ctx.body = ({
-    data:{
-      redirect : '/users/' + id
-    },
-    status:{
-      code : 0,
-      msg  : 'delete success!'
-    }
-  });
+    return User.updateById(id,{username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address}).then( user => {
+      console.log(user);
+
+      return ctx.body = ({
+        data:{
+          redirect : '/users/' + id
+        },
+        status:{
+          code : 0,
+          msg  : 'delete success!'
+        }
+      });
+    });
 };
 
-exports.destroy = function *(ctx, next) {
+exports.destroy = (ctx, next) => {
   console.log(ctx.method + ' /users/:id => destroy, query: ' + JSON.stringify(ctx.query) +
     ', params: ' + JSON.stringify(ctx.params) + ', body: ' + JSON.stringify(ctx.request.body));
-  let id = ctx.params.id;
-  
-  yield User.deleteByIdAsync(id);
-  
-  yield ctx.body= ({
-    data:{},
-    status:{
-      code : 0,
-      msg  : 'delete success!'
-    }
+  var id = ctx.params.id;
+  return User.deleteByIdAsync(id).then( () =>{
+    return ctx.body= ({
+      data:{},
+      status:{
+        code : 0,
+        msg  : 'delete success!'
+      }
+    });
+  }).catch((err)=>{
+      return ctx.api_error(err);
   });
 };
 
@@ -108,51 +120,61 @@ exports.destroy = function *(ctx, next) {
 
 // -- custom api
 exports.api = {
-  list: function *(ctx, next) {
-    let user_id = ctx.api_user._id;
+  list: (ctx, next) => {
+    var user_id = ctx.api_user._id;
 
-    let users = yield User.queryAsync({});
-    
-    yield ctx.api({
-      users : users
-    })
-  },
-  show: function *(ctx, next) {
-    let user_id = ctx.api_user._id;
-    let id = ctx.params.user_id;
-
-    let user = yield User.getByIdAsync(id);
-    
-    yield ctx.api({
-      user : user
+    return User.queryAsync({}).then((users) => {
+      return ctx.api({
+        users : users
+      })
+    }).catch((err)=>{
+      return ctx.api_error(err);
     });
   },
-  create: function *(ctx, next) {
-    let user_id = ctx.api_user._id;
+  show: (ctx, next) => {
+    var user_id = ctx.api_user._id;
+    var id = ctx.params.user_id;
 
-    let user = yield User.createAsync({username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address});
-    
-    yield ctx.body = ({
-      user : user
+    return User.getByIdAsync(id).then((user)=>{
+      return ctx.api({
+        user : user
+      });
+    }).catch((err)=>{
+      return ctx.api_error(err);
     });
   },
-  update: function *(ctx, next) {
-    let user_id = ctx.api_user._id;
-    let id = ctx.params.user_id;
-    
-    let user = yield User.updateByIdAsync(id, {username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address});
-    
-    yield ctx.api({
-      user : user,
-      redirect : '/users/' + id
+  create: (ctx, next) => {
+    var user_id = ctx.api_user._id;
+
+    return User.createAsync({username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address}).then(user=> {
+      return ctx.body = ({
+        user : user
+      })
+    }).catch((err)=>{
+      return ctx.api_error(err);
+    });
+
+  },
+  update: (ctx, next) => {
+    var user_id = ctx.api_user._id;
+    var id = ctx.params.user_id;
+    return User.updateByIdAsync(id, {username: ctx.request.body.username,password: ctx.request.body.password,avatar: ctx.request.body.avatar,phone_number: ctx.request.body.phone_number,address: ctx.request.body.address}).then(user=> {
+      return ctx.api({
+        user : user,
+        redirect : '/users/' + id
+      })
+    }).catch((err)=>{
+      return ctx.api_error(err);
     });
   },
-  delete: function *(ctx, next) {
-    let user_id = ctx.api_user._id;
-    let id = ctx.params.user_id;
+  delete: (ctx, next) => {
+    var user_id = ctx.api_user._id;
+    var id = ctx.params.user_id;
 
-    yield User.deleteByIdAsync(id);
-    
-    yield ctx.api({id: id});
+    return User.deleteByIdAsync(id).then(function(){
+      return ctx.api({id: id})
+    }).catch((err)=>{
+      return ctx.api_error(err);
+    }); 
   }
 }

@@ -1,12 +1,11 @@
 "use strict";
 
-var router = require('koa-router')();
 const co = require('co');
-
-var $middlewares  = require('mount-middlewares')(__dirname);
+const router = require('koa-router')();
+const $middlewares  = require('mount-middlewares')(__dirname);
 
 // core controller
-var $ = require('mount-controllers')(__dirname).users_controller;
+const $ = require('mount-controllers')(__dirname).users_controller;
 
 /**
  * Auto generate RESTful url routes.
@@ -23,19 +22,47 @@ var $ = require('mount-controllers')(__dirname).users_controller;
  *
  */
 
-router.get('/new', $.new); 
+router.get('/new', (ctx, next) => {
+  return co.wrap($.new)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+}); 
  
-router.get('/:id/edit', $.edit);
+router.get('/:id/edit', (ctx, next) => {
+  return co.wrap($.edit)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+}); 
 
-router.get('/', $.list);
+router.get('/',  (ctx, next) => {
+  return co.wrap($.list)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+}); 
 
-router.post('/', $.create);
+router.post('/', (ctx, next) => {
+  return co.wrap($.create)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+});
 
-router.get('/:id', $.show);
+router.get('/:id', (ctx, next) => {
+  return co.wrap($.show)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+});
 
-router.patch('/:id', $.update);
+router.patch('/:id', (ctx, next) => {
+  return co.wrap($.update)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+});
 
-router.delete('/:id', $.destroy);
+router.delete('/:id', (ctx, next) => {
+  return co.wrap($.destroy)(ctx, next).catch(err => {
+    return ctx.api_error(err);
+  })
+});
 
 // -- custom routes
 

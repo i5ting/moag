@@ -1,0 +1,62 @@
+{
+  "name": "moa2",
+  "version": "1.0.1",
+  "private": false,
+  "description": "Koa web app framework",
+  "scripts": {
+    "start": "./node_modules/.bin/supervisor ./bin/www",
+    "async": "./node_modules/.bin/supervisor ./bin/run",
+    "test": "standard && ./node_modules/.bin/ava -v"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "co": "^4.6.0",
+    "debug": "^2.2.0",
+    "ioredis": "^1.9.1",
+    "is": "^3.1.0",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^5.0.4",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.1.0",
+    "koa-json": "^2.0.2",
+    "koa-log4": "^2.0.1",
+    "koa-logger": "^2.0.0",
+    "koa-router": "^7.0.0",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.0.1",
+    "koa.res.api": "^2.0.0",
+    "kp": "^1.1.0",
+    "log1": "^1.0.7",
+    "mongoose": "4.0.5",
+    "mongoosedao": "^2.0.2",
+    "morgan": "~1.6.1",
+    "mount-controllers": "^1.0.7",
+    "mount-koa-routes": "^2.0.1",
+    "mount-middlewares": "^1.0.5",
+    "mount-models": "^1.0.8",
+    "mount-services": "^1.0.7",
+    "msgpack5": "^3.1.0",
+    "runkoa": "^1.5.2"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "gulp": "^3.9.0",
+    "superkoa": "^1.0.0",
+    "supervisor": "^0.7.1",
+    "standard": "*",
+    "sinon": "^1.11.1",
+    "zombie": "^2.1.1"
+  },
+  "license": "MIT",
+  "repository": "moajs/moa2",
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "standard": {
+    "globals": ["log", "info", "warn", "error", "dir", "time", "timeEnd", "trace", "assert"],
+    "ignore": [
+      "app/",
+      "public/**/*"
+    ]
+  }
+}

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm publish .",
-    "test": "node test.js",
+    "test" : "ava -v test/*.js ",
     "express": "node bin/moag.js user name:string password:string uid:object",
     "a": "node bin/moag.js cup name:string password:string -k -a",
     "c": "node bin/moag.js student2 name:string password:string -k",

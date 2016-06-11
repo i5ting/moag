@@ -5,13 +5,15 @@ var model = '{{models}}'
 
 var {{model}}
 
+var app = require('path').join(__dirname, '../../app.js')
+
 var mock{{entity}} = {
   // '{{model}}name': 'alfred',
   // 'password': '000000'
 }
 
 test.before(function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .post('/api/' + model)
     .send(mock{{entity}})
     .set('Accept', 'application/json')
@@ -39,7 +41,7 @@ test.before(function * (t) {
 
 // *  GET    /{{models}}[/]        => {{model}}.list()
 test('GET /' + model, function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .get('/' + model)
 
   t.is(200, res.status)
@@ -48,7 +50,7 @@ test('GET /' + model, function * (t) {
 
 // *  GET    /{{models}}/new       => {{model}}.new()
 test('GET /' + model + '/new', function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .get('/' + model + '/new')
 
   t.is(200, res.status)
@@ -57,7 +59,7 @@ test('GET /' + model + '/new', function * (t) {
 
 // *  GET    /{{models}}/:id       => {{model}}.show()
 test('GET /' + model + '/:id show', function * (t) {
-  var res1 = yield superkoa('../../app.js')
+  var res1 = yield superkoa(app)
     .post('/api/' + model)
     .send(mock{{entity}})
     .set('Accept', 'application/json')
@@ -65,7 +67,7 @@ test('GET /' + model + '/:id show', function * (t) {
 
   {{model}} = res1.body.{{model}}
 
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .get('/' + model + '/' + {{model}}._id)
 
   t.is(200, res.status)
@@ -74,7 +76,7 @@ test('GET /' + model + '/:id show', function * (t) {
 
 // *  GET    /{{models}}/:id/edit  => {{model}}.edit()
 test('GET /' + model + '/:id/edit', function * (t) {
-  var res1 = yield superkoa('../../app.js')
+  var res1 = yield superkoa(app)
     .post('/api/' + model)
     .send(mock{{entity}})
     .set('Accept', 'application/json')
@@ -82,7 +84,7 @@ test('GET /' + model + '/:id/edit', function * (t) {
 
   {{model}} = res1.body.{{model}}
 
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .get('/' + model + '/' + {{model}}._id + '/edit')
 
   t.is(200, res.status)
@@ -91,7 +93,7 @@ test('GET /' + model + '/:id/edit', function * (t) {
 
 // *  POST   /{{models}}[/]        => {{model}}.create()
 test('POST /' + model, function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .post('/' + model)
     .send(mock{{entity}})
 
@@ -101,7 +103,7 @@ test('POST /' + model, function * (t) {
 
 // *  PATCH  /{{models}}/:id       => {{model}}.update()
 test('PATCH /' + model + '/:id update', function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .patch('/' + model + '/' + {{model}}._id)
     .send({
       '{{model}}name': 'alfred',
@@ -114,7 +116,7 @@ test('PATCH /' + model + '/:id update', function * (t) {
 
 // *  DELETE /{{models}}/:id       => {{model}}.destroy()
 test('DELETE /' + model + '/:id destroy', function * (t) {
-  var res1 = yield superkoa('../../app.js')
+  var res1 = yield superkoa(app)
     .post('/api/' + model)
     .send(mock{{entity}})
     .set('Accept', 'application/json')
@@ -122,7 +124,7 @@ test('DELETE /' + model + '/:id destroy', function * (t) {
 
   {{model}} = res1.body.{{model}}
 
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .del('/' + model + '/' + {{model}}._id)
 
   t.is(200, res.status)
@@ -131,7 +133,7 @@ test('DELETE /' + model + '/:id destroy', function * (t) {
 
 // api
 test('API GET /api/' + model, function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .get('/api/' + model)
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
@@ -140,7 +142,7 @@ test('API GET /api/' + model, function * (t) {
 })
 
 test('API POST /api/' + model, function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .post('/api/' + model)
     .field('{{model}}name', 'my awesome avatar')
     .set('Accept', 'application/json')
@@ -150,7 +152,7 @@ test('API POST /api/' + model, function * (t) {
 })
 
 test('API GET /api/' + model + '/:{{model}}_id', function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .get('/api/' + model + '/:{{model}}_id')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
@@ -159,7 +161,7 @@ test('API GET /api/' + model + '/:{{model}}_id', function * (t) {
 })
 
 test('API PATCH /api/' + model + '/:{{model}}_id', function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .patch('/api/' + model + '/:{{model}}_id')
     .field('{{model}}name', 'my awesome avatar')
     .set('Accept', 'application/json')
@@ -169,7 +171,7 @@ test('API PATCH /api/' + model + '/:{{model}}_id', function * (t) {
 })
 
 test('API GET /api/' + model + '/:{{model}}_id', function * (t) {
-  var res = yield superkoa('../../app.js')
+  var res = yield superkoa(app)
     .delete('/api/' + model + '/:{{model}}_id')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)

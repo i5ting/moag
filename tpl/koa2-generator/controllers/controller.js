@@ -3,8 +3,6 @@
 /**
  * Created by Moajs on {{created_at}}.
  */
- 
-var $models = require('mount-models')(__dirname);
 
 var {{entity}} = $models.{{model}};
 

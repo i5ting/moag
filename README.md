@@ -16,8 +16,18 @@ Moag is a scaffold generator
 
 ## Install
 
-    [sudo] npm install -g moag
-    
+- moag 1.x for moa2 v1
+
+```
+[sudo] npm install -g moag@1
+```
+ 
+- moag 2.x for moa2 v2
+
+```
+[sudo] npm install -g moag@1
+``` 
+
 ## Usage
 
 ### for koa 2 common function

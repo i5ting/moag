@@ -25,7 +25,7 @@ Moag is a scaffold generator
 - moag 2.x for moa2 v2
 
 ```
-[sudo] npm install -g moag@1
+[sudo] npm install -g moag@2
 ``` 
 
 ## Usage

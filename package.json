@@ -1,6 +1,6 @@
 {
   "name": "moag",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "moag is a scaffold generator",
   "main": "index.js",
   "scripts": {

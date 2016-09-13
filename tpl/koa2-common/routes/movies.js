@@ -1,12 +1,9 @@
 "use strict";
 
-var router = require('koa-router')();
-const co = require('co');
-
-var $middlewares  = require('mount-middlewares')(__dirname);
+var router = koa_router()
 
 // core controller
-var $ = require('mount-controllers')(__dirname).{{models}}_controller;
+var $ = $controllers.{{models}}_controller;
 
 /**
  * Auto generate RESTful url routes.

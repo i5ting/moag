@@ -111,7 +111,7 @@ g.prototype.generate_route_api = function () {
 
 g.prototype.start = g.prototype.all = function () {
   this.generate_controller();
-  this.generate_test();
+  // this.generate_test();
   this.generate_model();
   this.generate_view();
   this.generate_route();
@@ -134,8 +134,10 @@ g.prototype.destroy = function () {
   var r = this.route_path  +'/'+ Inflector.pluralize(entity) + ".js";
   var a = this.route_path  +'/api/'+ Inflector.pluralize(entity) + ".js";
   
-  [c, t, m, v, r, a].forEach(function(file){
-    mv('-f', file, cache_path + '/');
+  [c, m, v, r, a].forEach(function(file){
+    console.log(file)
+    file = file.replace('/app', '')
+    rm('-rf', file);
   });
 }
 

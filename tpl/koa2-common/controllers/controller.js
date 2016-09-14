@@ -119,7 +119,7 @@ exports.destroy = (ctx, next) => {
 // -- custom api
 exports.api = {
   list: (ctx, next) => {
-    var {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
 
     return {{entity}}.queryAsync({}).then(({{models}}) => {
       return ctx.api({
@@ -130,7 +130,7 @@ exports.api = {
     });
   },
   show: (ctx, next) => {
-    var {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
     var id = ctx.params.{{model}}_id;
 
     return {{entity}}.getByIdAsync(id).then(({{model}})=>{
@@ -142,7 +142,7 @@ exports.api = {
     });
   },
   create: (ctx, next) => {
-    var {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
 
     return {{entity}}.createAsync({{keypair}}).then({{model}}=> {
       return ctx.body = ({
@@ -154,7 +154,7 @@ exports.api = {
 
   },
   update: (ctx, next) => {
-    var {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
     var id = ctx.params.{{model}}_id;
     return {{entity}}.updateByIdAsync(id, {{keypair}}).then({{model}}=> {
       return ctx.api({
@@ -166,7 +166,7 @@ exports.api = {
     });
   },
   delete: (ctx, next) => {
-    var {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
     var id = ctx.params.{{model}}_id;
 
     return {{entity}}.deleteByIdAsync(id).then(function(){

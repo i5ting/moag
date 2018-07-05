@@ -3,8 +3,6 @@
 /**
  * Created by Moajs on {{created_at}}.
  */
- 
-var $models = require('mount-models')(__dirname);
 
 var {{entity}} = $models.{{model}};
 
@@ -109,7 +107,7 @@ exports.destroy = function *(ctx, next) {
 // -- custom api
 exports.api = {
   list: function *(ctx, next) {
-    let {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
 
     let {{models}} = yield {{entity}}.queryAsync({});
     
@@ -118,7 +116,7 @@ exports.api = {
     })
   },
   show: function *(ctx, next) {
-    let {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
     let id = ctx.params.{{model}}_id;
 
     let {{model}} = yield {{entity}}.getByIdAsync(id);
@@ -128,7 +126,7 @@ exports.api = {
     });
   },
   create: function *(ctx, next) {
-    let {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
 
     let {{model}} = yield {{entity}}.createAsync({{keypair}});
     
@@ -137,7 +135,7 @@ exports.api = {
     });
   },
   update: function *(ctx, next) {
-    let {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
     let id = ctx.params.{{model}}_id;
     
     let {{model}} = yield {{entity}}.updateByIdAsync(id, {{keypair}});
@@ -148,7 +146,7 @@ exports.api = {
     });
   },
   delete: function *(ctx, next) {
-    let {{model}}_id = ctx.api_{{model}}._id;
+    let api_user_id = ctx.api_user.id;
     let id = ctx.params.{{model}}_id;
 
     yield {{entity}}.deleteByIdAsync(id);

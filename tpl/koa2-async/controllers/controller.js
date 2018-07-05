@@ -3,9 +3,8 @@
 /**
  * Created by Moajs on {{created_at}}.
  */
- 
-var $models = require('mount-models')(__dirname);
 
+var $models = require('mount-models')(__dirname);
 var {{entity}} = $models.{{model}};
 
 exports.list = async (ctx, next) => {
@@ -135,7 +134,7 @@ exports.destroy = async (ctx, next) => {
 exports.api = {
   list: async (ctx, next) => {
     try {
-      let {{model}}_id = ctx.api_{{model}}._id;
+      let api_user_id = ctx.api_user.id;
 
       let {{models}} = await {{entity}}.queryAsync({});
     
@@ -148,7 +147,7 @@ exports.api = {
   },
   show: async (ctx, next) => {
     try {
-      let {{model}}_id = ctx.api_{{model}}._id;
+      let api_user_id = ctx.api_user.id;
       let id = ctx.params.{{model}}_id;
 
       let {{model}} = await {{entity}}.getByIdAsync(id);
@@ -162,7 +161,7 @@ exports.api = {
   },
   create: async (ctx, next) => {
     try {
-      let {{model}}_id = ctx.api_{{model}}._id;
+      let api_user_id = ctx.api_user.id;
 
       let {{model}} = await {{entity}}.createAsync({{keypair}});
     
@@ -175,7 +174,7 @@ exports.api = {
   },
   update: async (ctx, next) => {
     try {
-      let {{model}}_id = ctx.api_{{model}}._id;
+      let api_user_id = ctx.api_user.id;
       let id = ctx.params.{{model}}_id;
     
       let {{model}} = await {{entity}}.updateByIdAsync(id, {{keypair}});
@@ -190,7 +189,7 @@ exports.api = {
   },
   delete: async (ctx, next) => {
     try {
-      let {{model}}_id = ctx.api_{{model}}._id;
+      let api_user_id = ctx.api_user.id;
       let id = ctx.params.{{model}}_id;
 
       await {{entity}}.deleteByIdAsync(id);

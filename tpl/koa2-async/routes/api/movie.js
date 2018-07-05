@@ -1,12 +1,10 @@
 "use strict";
 
-var router = require('koa-router')();
-const co = require('co');
+const router = require('koa-router')()
 
-// var res_api       = require('res.api');
-var $ = require('mount-controllers')(__dirname).{{models}}_controller;
-
-var $middlewares  = require('mount-middlewares')(__dirname);
+const $middlewares  = require('mount-middlewares')(__dirname);
+// core controller
+const $ = $controllers.{{models}}_controller;
 
 // route define
 router.get('/', $middlewares.check_api_token, $.api.list);

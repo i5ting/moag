@@ -1,7 +1,8 @@
 "use strict";
 
-var router = koa_router()
+const router = require('koa-router')();
 
+const $middlewares  = require('mount-middlewares')(__dirname);
 // core controller
 const $ = $controllers.{{models}}_controller;
 

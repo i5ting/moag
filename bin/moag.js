@@ -14,7 +14,7 @@ program
   .parse(process.argv);
 
 var opts = {
-  framework: 'express'
+  framework: 'koa2-async'
 }
 
 if (program.koa || program.async || program.common || program.generator) {

@@ -47,7 +47,7 @@ function g (obj, opts) {
   
   this.root_path = __dirname;
   this.base_path = obj.base_path;
-  this.framework = opts.framework ? opts.framework :'express';
+  this.framework = opts.framework ? opts.framework :'koa2-async';
   
   this.option = _default_options(this.base_path);
   

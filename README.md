@@ -48,7 +48,13 @@ moag cup name:string password:string -k -a
 moag book name:string password:string -k -g
 ```
 
-### default for expresss
+### for express generator
+
+```
+moag book name:string password:string -e
+```
+
+### default for koa2 async/await
 
     ➜  moag git:(master) moag
     Moajs HELP:

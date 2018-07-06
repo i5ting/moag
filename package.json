@@ -14,7 +14,8 @@
   "preferGlobal": "true",
   "bin": {
     "moad": "bin/moad.js",
-    "moag": "bin/moag.js"
+    "moag": "bin/moag.js",
+    "moa": "bin/moag.js"
   },
   "repository": {
     "type": "git",
